@@ -38,4 +38,7 @@ def load_air_quality(csv_path):
     # rename vehicle to target
     df = df.rename(columns={"co(gt)": "ts"})
 
+    # add id column
+    df["id"] = 1
+
     return df

@@ -5,7 +5,7 @@
 datasets=(air_quality traffic power energy parking)
 
 # set up arguments
-hours=24
+hours=1
 
 # loop through datasets
 for dataset in "${datasets[@]}"; do

@@ -24,6 +24,13 @@ parser.add_argument(
     default=1,
     help="Number of minutes to use for dataset aggregation. Default is 1",
 )
+parser.add_argument(
+    "--logging",
+    type=str,
+    default="info",
+    choices=["info", "debug", "warning", "error"],
+    help="Logging level. Choose between info, debug, warning, error",
+)
 args = parser.parse_args()
 
 BASE_DIR = Path("data")
