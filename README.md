@@ -39,28 +39,24 @@ python training_pipeline.py  --data=<dataset> --logging=info
 - `--logging` is the logging level. The options are `debug`, `info`, `warning`,
   `error` and `critical`. The default is `info`.
 
-## Dataset description
+## Dataset descriptions
 
 ### Air Quality Dataset
 
-[**Download & information about the dataset
-**](https://www.kaggle.com/datasets/fedesoriano/air-quality-data-set?resource=download)
+[Download & information about the dataset](https://www.kaggle.com/datasets/fedesoriano/air-quality-data-set?resource=download)
 
 ### Traffic Dataset
 
-[**Download & information about the dataset
-**](https://www.kaggle.com/datasets/fedesoriano/traffic-prediction-dataset)
+[Download & information about the dataset](https://www.kaggle.com/datasets/fedesoriano/traffic-prediction-dataset)
 
 ### Energy consumption Dataset
 
-[**Download & information about the dataset
-**](https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption?select=PJM_Load_hourly.csv)
+[Download & information about the dataset](https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption?select=PJM_Load_hourly.csv)
 
 ### Power Consumption of Turkey (2016-2020)
 
-[**Download & information about the dataset**](https://www.kaggle.com/datasets/hgultekin/hourly-power-consumption-of-turkey-20162020?select=RealTimeConsumption-01012016-04082020.csv)
-
+[Download & information about the dataset](https://www.kaggle.com/datasets/hgultekin/hourly-power-consumption-of-turkey-20162020?select=RealTimeConsumption-01012016-04082020.csv)
 
 ### Parking Occupancy Dataset
 
-[**Download & information about the dataset**](https://www.kaggle.com/datasets/mypapit/klccparking)
+[Download & information about the dataset](https://www.kaggle.com/datasets/mypapit/klccparking)
