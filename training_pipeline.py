@@ -14,7 +14,7 @@ from sklearn.svm import SVR
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 
-from src.evaluation import calculate_metrics
+from src.evaluation import calculate_importance, calculate_metrics
 
 # ARGUMENTS
 parser = argparse.ArgumentParser()
@@ -42,6 +42,10 @@ RESULTS_BASE_DIR = Path("results")
 RESULTS_PATH = RESULTS_BASE_DIR / args.data.upper()
 METRICS_CSV = RESULTS_PATH / "metrics.csv"
 RESULTS_PATH.mkdir(parents=True, exist_ok=True)
+
+IMPORTANCE_BASE_DIR = Path("results")
+IMPORTANCE_PATH = IMPORTANCE_BASE_DIR / args.data.upper()
+IMPORTANCE_CSV = IMPORTANCE_PATH / "importance.csv"
 
 LOGS_BASE_DIR = Path("logs")
 LOGS_PATH = LOGS_BASE_DIR / args.data.upper()
@@ -94,6 +98,9 @@ if __name__ == "__main__":
 
     # I must do 5 x 5 = 25 combinations
     results = pd.DataFrame(columns=["model", "2nd_model", "type", "mse", "rmse"])
+    importance = pd.DataFrame(
+        columns=["model", "2nd_model", "type", "feature", "importance", "std"]
+    )
     for model_name, model in models.items():
         # isolate features
         pfeatures_train = features_train.copy()
@@ -114,7 +121,18 @@ if __name__ == "__main__":
             results, model_name, "", label_test, preds_test, "plain"
         )
 
-        # TODO: calculate importance's
+        # TODO: use permutation importance from scikit learn
+        importance = calculate_importance(
+            importance,
+            model_name,
+            "",
+            "plain",
+            model,
+            pfeatures_test,
+            label_test,
+            "neg_mean_squared_error",
+            10,
+        )
 
         # voting and cascade
         for cmodel_name, cmodel in models.items():
@@ -137,7 +155,18 @@ if __name__ == "__main__":
                 results, model_name, cmodel_name, label_test, vpreds, "voting"
             )
 
-            # TODO: calculate importance's
+            # calculate importance
+            importance = calculate_importance(
+                importance,
+                model_name,
+                cmodel_name,
+                "voting",
+                voting,
+                pfeatures_test,
+                label_test,
+                "neg_mean_squared_error",
+                10,
+            )
 
             # create feature set for cascade
             cfeatures_train = features_train.copy()
@@ -159,9 +188,24 @@ if __name__ == "__main__":
                 results, model_name, cmodel_name, label_test, cpreds, "cascade"
             )
 
-            # TODO: calculate importance's
+            # calculate importance
+            importance = calculate_importance(
+                importance,
+                model_name,
+                cmodel_name,
+                "cascade",
+                cmodel,
+                cfeatures_test,
+                label_test,
+                "neg_mean_squared_error",
+                10,
+            )
 
     # export results
     results = results.sort_values(by=["model", "mse"])
     results.to_csv(METRICS_CSV, index=False)
     logging.info("Results have been exported!")
+
+    # export importance
+    importance.to_csv(IMPORTANCE_CSV, index=False)
+    logging.info("Importance have been exported!")

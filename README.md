@@ -1,5 +1,10 @@
 # cascade-multivariate-paper
 
+![Python 3.7.15](https://img.shields.io/badge/python-3.7.15-green.svg)
+![black](https://img.shields.io/badge/code%20style-black-000000.svg)
+![isort](https://img.shields.io/badge/isort-5.11.4-blue.svg)
+![flake8](https://img.shields.io/badge/flake8-5.0.4-blue.svg)
+
 ## How to run
 
 ### Install dependencies
