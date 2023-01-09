@@ -9,6 +9,7 @@ from src.dataset.energy import load_energy
 from src.dataset.parking import load_parking
 from src.dataset.power import load_power
 from src.dataset.traffic import load_traffic
+from src.feature_extraction import temporal_feature_extraction
 
 # ARGUMENTS
 parser = argparse.ArgumentParser()
@@ -71,6 +72,9 @@ if __name__ == "__main__":
     # drop nan
     df = df.dropna()
     print(f"Shape of dataset after dropping nan: {df.shape}")
+
+    # temporal feature extraction
+    df = temporal_feature_extraction(df)
 
     # create label for target
     df["ts_next"] = df["ts"].shift(-1)
