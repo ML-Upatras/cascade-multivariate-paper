@@ -6,7 +6,7 @@ datasets=(air_quality traffic power energy parking)
 
 # set up arguments
 logging_level=info
-ii=3
+ii=0
 
 # loop through datasets
 for dataset in "${datasets[@]}"; do

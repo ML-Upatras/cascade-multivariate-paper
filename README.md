@@ -43,7 +43,7 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 - `--data` is the dataset to use. The options are air_quality, traffic, energy, power and parking.
 - `--logging` is the logging level. The options are `debug`, `info`, `warning`,
   `error` and `critical`. The default is `info`.
-- `--ii` is the number of the importance iterations of the experiment. The default is 3.
+- `--ii` is the number of the importance iterations of the experiment. If it's 0 then feature importance is not calculated. The default is 0.
 
 ## Dataset descriptions
 

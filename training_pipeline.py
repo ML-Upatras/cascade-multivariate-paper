@@ -34,8 +34,8 @@ parser.add_argument(
 parser.add_argument(
     "--ii",
     type=int,
-    default=3,
-    help="Number of iterations for importance calculation",
+    default=0,
+    help="Number of iterations for importance calculation. If it's 0 then the importance it is not calculated.",
 )
 args = parser.parse_args()
 
@@ -127,18 +127,19 @@ if __name__ == "__main__":
             results, model_name, "", label_test, preds_test, "plain"
         )
 
-        # TODO: use permutation importance from scikit learn
-        importance = calculate_importance(
-            importance,
-            model_name,
-            "",
-            "plain",
-            model,
-            pfeatures_test,
-            label_test,
-            "neg_mean_squared_error",
-            args.ii,
-        )
+        # calculate feature importance
+        if args.ii > 0:
+            importance = calculate_importance(
+                importance,
+                model_name,
+                "",
+                "plain",
+                model,
+                pfeatures_test,
+                label_test,
+                "neg_mean_squared_error",
+                args.ii,
+            )
 
         # voting and cascade
         for cmodel_name, cmodel in models.items():
@@ -162,17 +163,18 @@ if __name__ == "__main__":
             )
 
             # calculate importance
-            importance = calculate_importance(
-                importance,
-                model_name,
-                cmodel_name,
-                "voting",
-                voting,
-                pfeatures_test,
-                label_test,
-                "neg_mean_squared_error",
-                args.ii,
-            )
+            if args.ii > 0:
+                importance = calculate_importance(
+                    importance,
+                    model_name,
+                    cmodel_name,
+                    "voting",
+                    voting,
+                    pfeatures_test,
+                    label_test,
+                    "neg_mean_squared_error",
+                    args.ii,
+                )
 
             # create feature set for cascade
             cfeatures_train = features_train.copy()
@@ -195,17 +197,18 @@ if __name__ == "__main__":
             )
 
             # calculate importance
-            importance = calculate_importance(
-                importance,
-                model_name,
-                cmodel_name,
-                "cascade",
-                cmodel,
-                cfeatures_test,
-                label_test,
-                "neg_mean_squared_error",
-                args.ii,
-            )
+            if args.ii > 0:
+                importance = calculate_importance(
+                    importance,
+                    model_name,
+                    cmodel_name,
+                    "cascade",
+                    cmodel,
+                    cfeatures_test,
+                    label_test,
+                    "neg_mean_squared_error",
+                    args.ii,
+                )
 
     # export results
     results = results.sort_values(by=["model", "mse"])
@@ -213,5 +216,6 @@ if __name__ == "__main__":
     logging.info("Results have been exported!")
 
     # export importance
-    importance.to_csv(IMPORTANCE_CSV, index=False)
-    logging.info("Importance have been exported!")
+    if args.ii > 0:
+        importance.to_csv(IMPORTANCE_CSV, index=False)
+        logging.info("Importance have been exported!")
