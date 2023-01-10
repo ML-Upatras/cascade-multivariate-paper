@@ -37,12 +37,13 @@ You can also run the preprocessing script for all the datasets, with the paper's
 For training the model, you can run:
 
 ```bash
-python training_pipeline.py  --data=<dataset> --logging=info
+python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ```
 
 - `--data` is the dataset to use. The options are air_quality, traffic, energy, power and parking.
 - `--logging` is the logging level. The options are `debug`, `info`, `warning`,
   `error` and `critical`. The default is `info`.
+- `--ii` is the number of the importance iterations of the experiment. The default is 3.
 
 ## Dataset descriptions
 

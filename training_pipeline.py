@@ -31,6 +31,12 @@ parser.add_argument(
     choices=["info", "debug", "warning", "error"],
     help="Logging level. Choose between info, debug, warning, error",
 )
+parser.add_argument(
+    "--ii",
+    type=int,
+    default=3,
+    help="Number of iterations for importance calculation",
+)
 args = parser.parse_args()
 
 # PATHING
@@ -131,7 +137,7 @@ if __name__ == "__main__":
             pfeatures_test,
             label_test,
             "neg_mean_squared_error",
-            10,
+            args.ii,
         )
 
         # voting and cascade
@@ -165,7 +171,7 @@ if __name__ == "__main__":
                 pfeatures_test,
                 label_test,
                 "neg_mean_squared_error",
-                10,
+                args.ii,
             )
 
             # create feature set for cascade
@@ -198,7 +204,7 @@ if __name__ == "__main__":
                 cfeatures_test,
                 label_test,
                 "neg_mean_squared_error",
-                10,
+                args.ii,
             )
 
     # export results
