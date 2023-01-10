@@ -76,8 +76,8 @@ if __name__ == "__main__":
     # temporal feature extraction
     df = temporal_feature_extraction(df)
 
-    # create label for target
-    df["ts_next"] = df["ts"].shift(-1)
+    # create label for target: group by id and create a ts_next column
+    df["ts_next"] = df.groupby("id")["ts"].transform(lambda x: x.shift(-1))
 
     # drop rows with nan target (last row of each id) and print the number of rows dropped
     logging.info(
