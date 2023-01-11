@@ -23,7 +23,7 @@ Then, you can run the preprocessing of the data script:
 python gen_data.py --data=<dataset> --hours=1 --p_steps=0
 ```
 
-- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking and room.
+- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking room and solar.
 - `--hours` is the number of hours to aggregate the data.
 - `--p_steps` is the number of previous time steps to add as features to the final dataset.
 
@@ -41,7 +41,7 @@ For training the model, you can run:
 python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ```
 
-- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking and room.
+- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking room and solar.
 - `--logging` is the logging level. The options are `debug`, `info`, `warning`,
   `error` and `critical`. The default is `info`.
 - `--ii` is the number of the importance iterations of the experiment. If it's 0 then feature importance is not calculated. The default is 0.
@@ -71,3 +71,7 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ### Room Temperature Dataset
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/vitthalmadane/ts-temp-1)
+
+### Solar Generation in Italy Dataset
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/arielcedola/solar-generation-and-demand-italy-20152016)

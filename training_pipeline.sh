@@ -1,8 +1,9 @@
 #!/bin/bash
-# bash script that runs the training pipeline script for all datasets (air_quality, traffic, power, energy, parking, room)
+# bash script that runs the training pipeline script for all datasets (air_quality, traffic, power, energy, parking,
+# room, solar)
 
 # set up list of datasets
-datasets=(air_quality traffic power energy parking room)
+datasets=(air_quality traffic power energy parking room solar)
 
 # set up arguments
 logging_level=info
