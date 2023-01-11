@@ -32,6 +32,12 @@ parser.add_argument(
     choices=["info", "debug", "warning", "error"],
     help="Logging level. Choose between info, debug, warning, error",
 )
+parser.add_argument(
+    "--p_steps",
+    type=int,
+    default=1,
+    help="Number of previous timesteps to add on the dataset",
+)
 args = parser.parse_args()
 
 BASE_DIR = Path("data")
@@ -71,10 +77,17 @@ if __name__ == "__main__":
 
     # drop nan
     df = df.dropna()
-    print(f"Shape of dataset after dropping nan: {df.shape}")
+    logging.info(f"Shape after dropping nan: {df.shape}")
 
     # temporal feature extraction
     df = temporal_feature_extraction(df)
+    logging.info(f"Shape after temporal feature extraction: {df.shape}")
+
+    # feature extraction of previous steps
+    if args.p_steps > 0:
+        for step in range(1, args.p_steps + 1):
+            df[f"ts_{step}"] = df["ts"].shift(step)
+    logging.info(f"Shape after adding previous steps: {df.shape}")
 
     # create label for target: group by id and create a ts_next column
     df["ts_next"] = df.groupby("id")["ts"].transform(lambda x: x.shift(-1))
@@ -87,4 +100,5 @@ if __name__ == "__main__":
 
     # save the final dataframe
     df.to_csv(FINAL_DATASET, index=False)
+    logging.info(f"Final dataset shape: {df.shape}")
     logging.info("Final dataset saved!")

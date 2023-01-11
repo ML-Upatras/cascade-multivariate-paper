@@ -20,11 +20,12 @@ python -m pip install -r requirements.txt
 Then, you can run the preprocessing of the data script:
 
 ```bash
-python gen_data.py --data=<dataset> --hours=1
+python gen_data.py --data=<dataset> --hours=1 --p_steps=0
 ```
 
 - `--data` is the dataset to use. The options are air_quality, traffic, energy, power and parking.
 - `--hours` is the number of hours to aggregate the data.
+- `--p_steps` is the number of previous time steps to add as features to the final dataset.
 
 You can also run the preprocessing script for all the datasets, with the paper's parameters with the following bash script:
 
