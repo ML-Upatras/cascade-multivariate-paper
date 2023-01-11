@@ -7,7 +7,7 @@ datasets=(air_quality traffic power energy parking room solar)
 # set up arguments
 hours=24
 logging_level=info
-p_steps=24
+p_steps=30
 
 # loop through datasets
 for dataset in "${datasets[@]}"; do
