@@ -1,8 +1,8 @@
 #!/bin/bash
-# bash script that runs the data_gen script for all datasets (air_quality, traffic, power, energy, parking)
+# bash script that runs the data_gen script for all datasets (air_quality, traffic, power, energy, parking, room)
 
 # set up list of datasets
-datasets=(air_quality traffic power energy parking)
+datasets=(air_quality traffic power energy parking room)
 
 # set up arguments
 hours=24

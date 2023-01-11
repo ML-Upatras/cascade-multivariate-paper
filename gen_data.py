@@ -8,6 +8,7 @@ from src.dataset.air_quality import load_air_quality
 from src.dataset.energy import load_energy
 from src.dataset.parking import load_parking
 from src.dataset.power import load_power
+from src.dataset.room import load_room
 from src.dataset.traffic import load_traffic
 from src.feature_extraction import temporal_feature_extraction
 
@@ -16,8 +17,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "--data",
     type=str,
-    choices=["air_quality", "traffic", "energy", "power", "parking"],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking",
+    choices=["air_quality", "traffic", "energy", "power", "parking", "room"],
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room",
 )
 parser.add_argument(
     "--hours",
@@ -69,6 +70,8 @@ if __name__ == "__main__":
         df = load_power(DATA_PATH)
     elif args.data == "parking":
         df = load_parking(DATA_PATH)
+    elif args.data == "room":
+        df = load_room(DATA_PATH)
 
     # aggregate by x hours and id
     df = df.groupby([pd.Grouper(key="time", freq=f"{args.hours}h"), "id"]).mean()
