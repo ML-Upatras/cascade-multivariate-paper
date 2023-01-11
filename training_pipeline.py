@@ -21,8 +21,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "--data",
     type=str,
-    choices=["air_quality", "traffic", "energy", "power", "parking"],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking",
+    choices=["air_quality", "traffic", "energy", "power", "parking", "room", "solar"],
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar",
 )
 parser.add_argument(
     "--logging",
