@@ -1,0 +1,14 @@
+dataset,model,2nd_model,type,mse,rmse
+air_quality,SVR,XGBoostRegressor,cascade,0.5608383033023708,0.7488913828469191
+traffic,RandomForestRegressor,RandomForestRegressor,voting,12.61598847343091,3.551899276926488
+energy,RandomForestRegressor,XGBoostRegressor,voting,3885469.478746767,1971.1594249950376
+power,RandomForestRegressor,XGBoostRegressor,cascade,423364.3995392798,650.6645829759599
+parking,SVR,RandomForestRegressor,cascade,277862.4082612471,527.1265581065396
+room,XGBoostRegressor,SVR,cascade,16.909594323396348,4.112127712437486
+solar,RandomForestRegressor,,plain,471506.2584194441,686.6631331442253
+kolkata,RandomForestRegressor,GradientBoostingRegressor,voting,0.8944811614229706,0.945770141959964
+turbine,SVR,GradientBoostingRegressor,cascade,300949.5458190644,548.5886854639497
+joho,RandomForestRegressor,RandomForestRegressor,voting,5932087.813862596,2435.5877758484903
+electricity,SVR,GradientBoostingRegressor,voting,0.0996058331486847,0.3156039181453308
+iot,SVR,XGBoostRegressor,cascade,10.716203851507249,3.2735613407277477
+,,,,,
