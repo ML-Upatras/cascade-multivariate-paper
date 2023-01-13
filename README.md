@@ -75,3 +75,19 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ### Solar Generation in Italy Dataset
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/arielcedola/solar-generation-and-demand-italy-20152016)
+
+### Temperature and Humidity of Kolkata from 2015-2020
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/sumandey/temperature-and-humidity-of-kolkata-from-20152020)
+
+### Wind Turbine Texas Dataset
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/pravdomirdobrev/texas-wind-turbine-dataset-simulated)
+
+### Hourly load data of the power supply company of the city of Joho
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/pattnaiksatyajit/hourly-load-data)
+
+### Household Electric Power Consumption
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/uciml/electric-power-consumption-data-set)
