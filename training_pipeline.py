@@ -33,8 +33,10 @@ parser.add_argument(
         "turbine",
         "joho",
         "electricity",
+        "iot",
+        "home",
     ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity",
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home",
 )
 parser.add_argument(
     "--logging",

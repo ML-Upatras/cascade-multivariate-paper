@@ -37,13 +37,17 @@ def load_home(data_path):
     df = df.drop(["use", "gen"], axis=1)
 
     # for cloud cover replace these invalid values with the next valid value
-    df["cloudcover"].replace(["cloudcover"], method="bfill", inplace=True)
+    df["cloudcover"].replace(["cloudCover"], method="bfill", inplace=True)
     df["cloudcover"] = df["cloudcover"].astype("float")
 
     # group by hour
     df = df.groupby([pd.Grouper(key="time", freq="1h")]).mean()
+    df = df.reset_index()
 
     # add id
     df["id"] = 1
+
+    # rename house overall to ts
+    df = df.rename(columns={"house overall": "ts"})
 
     return df

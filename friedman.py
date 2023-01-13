@@ -35,7 +35,21 @@ models = [
     "XGBoostRegressor",
     "SVR",
 ]
-datasets = ["air_quality", "traffic", "energy", "power", "parking", "room", "solar"]
+datasets = [
+    "air_quality",
+    "traffic",
+    "energy",
+    "power",
+    "parking",
+    "room",
+    "solar",
+    "kolkata",
+    "turbine",
+    "joho",
+    "electricity",
+    "iot",
+    "home",
+]
 
 
 if __name__ == "__main__":
@@ -51,9 +65,13 @@ if __name__ == "__main__":
 
             # iterate over datasets
             for dataset in datasets:
-                RESULTS_PATH = RESULTS_BASE_DIR / dataset.upper()
-                METRICS_CSV = RESULTS_PATH / "metrics.csv"
-                metrics = pd.read_csv(METRICS_CSV)
+                try:
+                    RESULTS_PATH = RESULTS_BASE_DIR / dataset.upper()
+                    METRICS_CSV = RESULTS_PATH / "metrics.csv"
+                    metrics = pd.read_csv(METRICS_CSV)
+                except FileNotFoundError:
+                    logging.error(f"Results for {dataset} not found.")
+                    continue
 
                 # isolate plane model run for the first model
                 first_model = metrics[
