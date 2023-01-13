@@ -39,4 +39,7 @@ def load_electricity(data_path):
     # rename global_active_power to ts
     df = df.rename(columns={"global_active_power": "ts"})
 
+    # add id
+    df["id"] = 1
+
     return df

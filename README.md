@@ -23,7 +23,7 @@ Then, you can run the preprocessing of the data script:
 python gen_data.py --data=<dataset> --hours=1 --p_steps=0
 ```
 
-- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking room and solar.
+- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot and home.
 - `--hours` is the number of hours to aggregate the data.
 - `--p_steps` is the number of previous time steps to add as features to the final dataset.
 
@@ -41,7 +41,7 @@ For training the model, you can run:
 python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ```
 
-- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking room and solar.
+- `--data` is the dataset to use. The options are air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot and home.
 - `--logging` is the logging level. The options are `debug`, `info`, `warning`,
   `error` and `critical`. The default is `info`.
 - `--ii` is the number of the importance iterations of the experiment. If it's 0 then feature importance is not calculated. The default is 0.
@@ -91,3 +91,11 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ### Household Electric Power Consumption
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/uciml/electric-power-consumption-data-set)
+
+### Temperature Readings : IOT Devices
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/atulanandjha/temperature-readings-iot-devices)
+
+### Smart Home Dataset with weather Information
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/taranvee/smart-home-dataset-with-weather-information)

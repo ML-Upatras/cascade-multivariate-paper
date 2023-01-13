@@ -7,6 +7,8 @@ import pandas as pd
 from src.dataset.air_quality import load_air_quality
 from src.dataset.electricity import load_electricity
 from src.dataset.energy import load_energy
+from src.dataset.home import load_home
+from src.dataset.iot import load_iot
 from src.dataset.joho import load_joho
 from src.dataset.kolkata import load_kolkata
 from src.dataset.parking import load_parking
@@ -34,8 +36,10 @@ parser.add_argument(
         "turbine",
         "joho",
         "electricity",
+        "iot",
+        "home",
     ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity",
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home.",
 )
 parser.add_argument(
     "--hours",
@@ -99,6 +103,10 @@ if __name__ == "__main__":
         df = load_joho(DATA_PATH)
     elif args.data == "electricity":
         df = load_electricity(DATA_PATH)
+    elif args.data == "iot":
+        df = load_iot(DATA_PATH)
+    elif args.data == "home":
+        df = load_home(DATA_PATH)
 
     # aggregate by x hours and id
     df = df.groupby([pd.Grouper(key="time", freq=f"{args.hours}h"), "id"]).mean()

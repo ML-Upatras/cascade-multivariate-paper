@@ -17,4 +17,4 @@ def load_joho(data_path):
     # add id
     df["id"] = 1
 
-    return
+    return df
