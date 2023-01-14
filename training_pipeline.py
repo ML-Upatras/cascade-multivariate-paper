@@ -8,6 +8,7 @@ from sklearn.ensemble import (
     RandomForestRegressor,
     VotingRegressor,
 )
+from sklearn.feature_selection import SelectPercentile, f_classif
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
@@ -34,7 +35,7 @@ parser.add_argument(
         "joho",
         "electricity",
         "iot",
-        "home",
+        # "home",
     ],
     help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home",
 )
@@ -51,6 +52,13 @@ parser.add_argument(
     default=0,
     help="Number of iterations for importance calculation. If it's 0 then the importance it is not calculated.",
 )
+parser.add_argument(
+    "--perc",
+    type=int,
+    default=30,
+    help="Percentage of features to select. Default is 30",
+)
+
 args = parser.parse_args()
 
 # PATHING
@@ -115,6 +123,18 @@ if __name__ == "__main__":
     features_test = pd.DataFrame(
         scaler.transform(features_test), columns=features_test.columns
     )
+
+    # select features
+    if 0 < args.perc <= 100:
+        # define feature selection & fit to train data
+        select = SelectPercentile(f_classif, percentile=args.perc)
+        selected_features = select.fit_transform(features_train, label_train)
+        selected_features_names = features_train.columns[select.get_support()]
+
+        # isolate selected features on features_train and features_test
+        features_train = features_train[selected_features_names]
+        features_test = features_test[selected_features_names]
+        logging.debug(f"Selected features: {features_train.columns.tolist()}")
 
     # I must do 5 x 5 = 25 combinations
     results = pd.DataFrame(columns=["model", "2nd_model", "type", "mse", "rmse"])

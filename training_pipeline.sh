@@ -6,13 +6,14 @@
 datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot home)
 
 # set up arguments
-logging_level=info
+logging_level=debug
 ii=0
+perc=30
 
 # loop through datasets
 for dataset in "${datasets[@]}"; do
   echo "Training pipeline for $dataset"
-  python training_pipeline.py --data="$dataset" --logging=$logging_level --ii=$ii
+  python training_pipeline.py --data="$dataset" --logging=$logging_level --ii=$ii --perc=$perc
   echo "Done"
   echo ""
 done
