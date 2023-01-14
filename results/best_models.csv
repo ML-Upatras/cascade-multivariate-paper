@@ -11,4 +11,3 @@ turbine,SVR,GradientBoostingRegressor,cascade,300949.5458190644,548.588685463949
 joho,RandomForestRegressor,RandomForestRegressor,voting,5932087.813862596,2435.5877758484903
 electricity,SVR,GradientBoostingRegressor,voting,0.0996058331486847,0.3156039181453308
 iot,SVR,XGBoostRegressor,cascade,10.716203851507249,3.2735613407277477
-,,,,,
