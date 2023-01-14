@@ -60,6 +60,13 @@ parser.add_argument(
     default=1,
     help="Number of previous timesteps to add on the dataset",
 )
+# create an argument for the forecasting horizon
+parser.add_argument(
+    "--fh",
+    type=int,
+    default=1,
+    help="Forecasting horizon. Number of steps to forecast.",
+)
 args = parser.parse_args()
 
 BASE_DIR = Path("data")
@@ -128,7 +135,9 @@ if __name__ == "__main__":
     logging.info(f"Shape after adding previous steps: {df.shape}")
 
     # create label for target: group by id and create a ts_next column
-    df["ts_next"] = df.groupby("id")["ts"].transform(lambda x: x.shift(-1))
+    df["ts_next"] = df.groupby("id")["ts"].shift(-args.fh)
+    df = df.sort_values(by=["id", "time"])
+    df = df.reset_index(drop=True)
 
     # drop rows with nan target (last row of each id) and print the number of rows dropped
     logging.info(
