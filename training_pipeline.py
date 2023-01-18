@@ -162,18 +162,19 @@ if __name__ == "__main__":
         )
 
         # calculate feature importance
-        if args.ii > 0:
-            importance = calculate_importance(
-                importance,
-                model_name,
-                "",
-                "plain",
-                model,
-                pfeatures_test,
-                label_test,
-                "neg_mean_squared_error",
-                args.ii,
-            )
+        if model_name in ["RandomForestRegressor", "XGBoostRegressor"]:
+            if args.ii > 0:
+                importance = calculate_importance(
+                    importance,
+                    model_name,
+                    "",
+                    "plain",
+                    model,
+                    pfeatures_test,
+                    label_test,
+                    "neg_mean_squared_error",
+                    args.ii,
+                )
 
         # voting and cascade
         for cmodel_name, cmodel in models.items():
@@ -197,18 +198,19 @@ if __name__ == "__main__":
             )
 
             # calculate importance
-            if args.ii > 0:
-                importance = calculate_importance(
-                    importance,
-                    model_name,
-                    cmodel_name,
-                    "voting",
-                    voting,
-                    pfeatures_test,
-                    label_test,
-                    "neg_mean_squared_error",
-                    args.ii,
-                )
+            if model_name in ["RandomForestRegressor", "XGBoostRegressor"]:
+                if args.ii > 0:
+                    importance = calculate_importance(
+                        importance,
+                        model_name,
+                        cmodel_name,
+                        "voting",
+                        voting,
+                        pfeatures_test,
+                        label_test,
+                        "neg_mean_squared_error",
+                        args.ii,
+                    )
 
             # create feature set for cascade
             cfeatures_train = features_train.copy()
@@ -231,18 +233,19 @@ if __name__ == "__main__":
             )
 
             # calculate importance
-            if args.ii > 0:
-                importance = calculate_importance(
-                    importance,
-                    model_name,
-                    cmodel_name,
-                    "cascade",
-                    cmodel,
-                    cfeatures_test,
-                    label_test,
-                    "neg_mean_squared_error",
-                    args.ii,
-                )
+            if model_name in ["RandomForestRegressor", "XGBoostRegressor"]:
+                if args.ii > 0:
+                    importance = calculate_importance(
+                        importance,
+                        model_name,
+                        cmodel_name,
+                        "cascade",
+                        cmodel,
+                        cfeatures_test,
+                        label_test,
+                        "neg_mean_squared_error",
+                        args.ii,
+                    )
 
     # export results
     results = results.sort_values(by=["model", "mse"])

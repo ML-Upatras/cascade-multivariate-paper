@@ -6,9 +6,9 @@
 datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot home)
 
 # set up arguments
-hours=1
+hours=24
 logging_level=info
-p_steps=24
+p_steps=30
 fh=1
 
 # loop through datasets

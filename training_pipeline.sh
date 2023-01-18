@@ -8,7 +8,7 @@ datasets=(air_quality traffic power energy parking room solar kolkata turbine jo
 # set up arguments
 logging_level=debug
 ii=0
-perc=30
+perc=0
 
 # loop through datasets
 for dataset in "${datasets[@]}"; do
