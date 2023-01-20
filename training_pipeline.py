@@ -23,7 +23,7 @@ parser.add_argument(
     "--data",
     type=str,
     choices=[
-        "air_quality",
+        # "air_quality",
         "traffic",
         "energy",
         "power",
@@ -33,11 +33,11 @@ parser.add_argument(
         "kolkata",
         "turbine",
         "joho",
-        "electricity",
+        # "electricity",
         "iot",
-        # "home",
+        "wind",
     ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home",
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, wind",
 )
 parser.add_argument(
     "--logging",
@@ -89,7 +89,6 @@ logging.basicConfig(
 
 # DEFINE REGRESSION MODELS
 models = {
-    "DecisionTreeRegressor": DecisionTreeRegressor(),
     "RandomForestRegressor": RandomForestRegressor(),
     "XGBoostRegressor": XGBRegressor(),
     "SVR": SVR(),
@@ -178,74 +177,76 @@ if __name__ == "__main__":
 
         # voting and cascade
         for cmodel_name, cmodel in models.items():
-            # calculate voting
-            voting = VotingRegressor(
-                [(f"{model_name}_1", model), (f"{cmodel_name}_2", cmodel)]
-            )
+            # do everything if the model is not the same
+            if model_name != cmodel_name:
+                # calculate voting
+                voting = VotingRegressor(
+                    [(f"{model_name}_1", model), (f"{cmodel_name}_2", cmodel)]
+                )
 
-            # fit voting
-            logging.info(
-                f"voting {model_name} with {cmodel_name} for {pfeatures_train.shape[1]} features..."
-            )
-            voting.fit(pfeatures_train, label_train)
+                # fit voting
+                logging.info(
+                    f"voting {model_name} with {cmodel_name} for {pfeatures_train.shape[1]} features..."
+                )
+                voting.fit(pfeatures_train, label_train)
 
-            # predict
-            vpreds = voting.predict(pfeatures_test)
+                # predict
+                vpreds = voting.predict(pfeatures_test)
 
-            # evaluate voting mse and rmse
-            results = calculate_metrics(
-                results, model_name, cmodel_name, label_test, vpreds, "voting"
-            )
+                # evaluate voting mse and rmse
+                results = calculate_metrics(
+                    results, model_name, cmodel_name, label_test, vpreds, "voting"
+                )
 
-            # calculate importance
-            if model_name in ["RandomForestRegressor", "XGBoostRegressor"]:
-                if args.ii > 0:
-                    importance = calculate_importance(
-                        importance,
-                        model_name,
-                        cmodel_name,
-                        "voting",
-                        voting,
-                        pfeatures_test,
-                        label_test,
-                        "neg_mean_squared_error",
-                        args.ii,
-                    )
+                # calculate importance
+                if model_name in ["RandomForestRegressor", "XGBoostRegressor"]:
+                    if args.ii > 0:
+                        importance = calculate_importance(
+                            importance,
+                            model_name,
+                            cmodel_name,
+                            "voting",
+                            voting,
+                            pfeatures_test,
+                            label_test,
+                            "neg_mean_squared_error",
+                            args.ii,
+                        )
 
-            # create feature set for cascade
-            cfeatures_train = features_train.copy()
-            cfeatures_test = features_test.copy()
-            cfeatures_train["preds"] = preds_train
-            cfeatures_test["preds"] = preds_test
+                # create feature set for cascade
+                cfeatures_train = features_train.copy()
+                cfeatures_test = features_test.copy()
+                cfeatures_train["preds"] = preds_train
+                cfeatures_test["preds"] = preds_test
 
-            # fit cascade model
-            logging.info(
-                f"cascade {model_name} with {cmodel_name} for {pfeatures_train.shape[1]} features..."
-            )
-            cmodel.fit(cfeatures_train, label_train)
+                # fit cascade model
+                logging.info(
+                    f"cascade {model_name} with {cmodel_name} for {pfeatures_train.shape[1]} features..."
+                )
+                cmodel.fit(cfeatures_train, label_train)
 
-            # make predictions
-            cpreds = cmodel.predict(cfeatures_test)
+                # make predictions
+                cpreds = cmodel.predict(cfeatures_test)
 
-            # evaluate cascade's mse and rmse
-            results = calculate_metrics(
-                results, model_name, cmodel_name, label_test, cpreds, "cascade"
-            )
+                # evaluate cascade's mse and rmse
+                results = calculate_metrics(
+                    results, model_name, cmodel_name, label_test, cpreds, "cascade"
+                )
 
-            # calculate importance
-            if model_name in ["RandomForestRegressor", "XGBoostRegressor"]:
-                if args.ii > 0:
-                    importance = calculate_importance(
-                        importance,
-                        model_name,
-                        cmodel_name,
-                        "cascade",
-                        cmodel,
-                        cfeatures_test,
-                        label_test,
-                        "neg_mean_squared_error",
-                        args.ii,
-                    )
+                # calculate importance
+                if model_name in ["RandomForestRegressor", "XGBoostRegressor"]:
+                    if args.ii > 0:
+                        importance = calculate_importance(
+                            importance,
+                            model_name,
+                            cmodel_name,
+                            "cascade",
+                            cmodel,
+                            cfeatures_test,
+                            label_test,
+                            "neg_mean_squared_error",
+                            args.ii,
+                        )
 
     # export results
     results = results.sort_values(by=["model", "mse"])
