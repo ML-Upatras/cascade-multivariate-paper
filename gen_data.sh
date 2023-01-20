@@ -1,14 +1,14 @@
 #!/bin/bash
 # bash script that runs the data_gen script for all datasets (air_quality, traffic, power, energy,
-# parking, room, solar, kolkata, turbine, joho, electricity, iot, home)
+# parking, room, solar, kolkata, turbine, joho, electricity, iot, wind)
 
 # set up list of datasets
-datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot home)
+datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot wind)
 
 # set up arguments
-hours=24
+hours=1
 logging_level=info
-p_steps=30
+p_steps=168
 fh=1
 
 # loop through datasets

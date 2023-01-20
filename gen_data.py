@@ -7,7 +7,6 @@ import pandas as pd
 from src.dataset.air_quality import load_air_quality
 from src.dataset.electricity import load_electricity
 from src.dataset.energy import load_energy
-from src.dataset.home import load_home
 from src.dataset.iot import load_iot
 from src.dataset.joho import load_joho
 from src.dataset.kolkata import load_kolkata
@@ -17,6 +16,7 @@ from src.dataset.room import load_room
 from src.dataset.solar import load_solar
 from src.dataset.traffic import load_traffic
 from src.dataset.turbine import load_turbine
+from src.dataset.wind import load_wind
 from src.feature_extraction import temporal_feature_extraction
 
 # ARGUMENTS
@@ -37,9 +37,9 @@ parser.add_argument(
         "joho",
         "electricity",
         "iot",
-        "home",
+        "wind",
     ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home.",
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home, wind.",
 )
 parser.add_argument(
     "--hours",
@@ -112,8 +112,8 @@ if __name__ == "__main__":
         df = load_electricity(DATA_PATH)
     elif args.data == "iot":
         df = load_iot(DATA_PATH)
-    elif args.data == "home":
-        df = load_home(DATA_PATH)
+    elif args.data == "wind":
+        df = load_wind(DATA_PATH)
 
     # aggregate by x hours and id
     df = df.groupby([pd.Grouper(key="time", freq=f"{args.hours}h"), "id"]).mean()
@@ -123,6 +123,13 @@ if __name__ == "__main__":
     # drop nan
     df = df.dropna()
     logging.info(f"Shape after dropping nan: {df.shape}")
+    #
+    # # feature extraction of previous steps for every column except time, id and ts
+    # if args.p_steps > 0:
+    #     for column in df.columns:
+    #         if column not in ["time", "id", "ts"]:
+    #             for step in range(1, args.p_steps + 1):
+    #                 df[f"{column}_t_{step}"] = df[column].shift(step)
 
     # temporal feature extraction
     df = temporal_feature_extraction(df)
