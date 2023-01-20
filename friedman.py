@@ -29,7 +29,6 @@ logging.basicConfig(
 )
 
 models = [
-    "DecisionTreeRegressor",
     "RandomForestRegressor",
     "GradientBoostingRegressor",
     "XGBoostRegressor",
@@ -48,7 +47,7 @@ datasets = [
     "joho",
     "electricity",
     "iot",
-    # "home",
+    "wind",
 ]
 
 
@@ -57,6 +56,10 @@ if __name__ == "__main__":
     for model in models:
         # iterate over the other models
         for model_2 in models:
+            # if the model is the same as the other model, skip
+            if model == model_2:
+                continue
+
             logging.info(f"Friedman {model} & {model_2}...")
             # initialize dataframe for each combination (25 df)
             friedman_df = pd.DataFrame(
