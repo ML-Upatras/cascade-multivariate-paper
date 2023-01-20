@@ -3,7 +3,7 @@
 # parking, room, solar, kolkata, turbine, joho, electricity, iot, wind)
 
 # set up list of datasets
-datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot wind)
+datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot wind sofia)
 
 # set up arguments
 hours=1

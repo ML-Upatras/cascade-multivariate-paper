@@ -13,6 +13,7 @@ from src.dataset.kolkata import load_kolkata
 from src.dataset.parking import load_parking
 from src.dataset.power import load_power
 from src.dataset.room import load_room
+from src.dataset.sofia import load_sofia
 from src.dataset.solar import load_solar
 from src.dataset.traffic import load_traffic
 from src.dataset.turbine import load_turbine
@@ -38,8 +39,9 @@ parser.add_argument(
         "electricity",
         "iot",
         "wind",
+        "sofia",
     ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home, wind.",
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home, wind, sofia.",
 )
 parser.add_argument(
     "--hours",
@@ -114,6 +116,8 @@ if __name__ == "__main__":
         df = load_iot(DATA_PATH)
     elif args.data == "wind":
         df = load_wind(DATA_PATH)
+    elif args.data == "sofia":
+        df = load_sofia(DATA_PATH)
 
     # aggregate by x hours and id
     df = df.groupby([pd.Grouper(key="time", freq=f"{args.hours}h"), "id"]).mean()

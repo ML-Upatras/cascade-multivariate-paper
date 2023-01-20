@@ -23,7 +23,7 @@ parser.add_argument(
     "--data",
     type=str,
     choices=[
-        # "air_quality",
+        "air_quality",
         "traffic",
         "energy",
         "power",
@@ -33,11 +33,12 @@ parser.add_argument(
         "kolkata",
         "turbine",
         "joho",
-        # "electricity",
+        "electricity",
         "iot",
         "wind",
+        "sofia",
     ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, wind",
+    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, wind, sofia.",
 )
 parser.add_argument(
     "--logging",
