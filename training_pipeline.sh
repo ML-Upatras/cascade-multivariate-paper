@@ -3,7 +3,7 @@
 # room, solar, kolkata, turbine, joho, electricity, iot, wind sofia)
 
 # set up list of datasets
-datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot wind sofia)
+datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot wind sofia daily_temp alcohol)
 
 # set up arguments
 logging_level=debug

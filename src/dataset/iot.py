@@ -1,3 +1,5 @@
+import logging
+
 import pandas as pd
 
 
@@ -30,5 +32,10 @@ def load_iot(data_path):
 
     # drop rows with missing values
     df = df.dropna()
+
+    # aggregate by x hours and id
+    df = df.groupby([pd.Grouper(key="time", freq="1h"), "id"]).mean()
+    df = df.reset_index()
+    logging.info(f"Shape after grouping per 1 hour: {df.shape}")
 
     return df

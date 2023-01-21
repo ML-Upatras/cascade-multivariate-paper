@@ -1,3 +1,5 @@
+import logging
+
 import pandas as pd
 
 
@@ -33,5 +35,10 @@ def load_parking(data_path):
 
         # convert ts to float
         df["ts"] = df["ts"].astype(float)
+
+    # aggregate by x hours and id
+    df = df.groupby([pd.Grouper(key="time", freq="1h"), "id"]).mean()
+    df = df.reset_index()
+    logging.info(f"Shape after grouping per 1 hour: {df.shape}")
 
     return df

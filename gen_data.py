@@ -18,12 +18,6 @@ parser.add_argument(
     help=f"Dataset to use. Choose between {', '.join(datasets)}.",
 )
 parser.add_argument(
-    "--hours",
-    type=int,
-    default=1,
-    help="Number of minutes to use for dataset aggregation. Default is 1",
-)
-parser.add_argument(
     "--logging",
     type=str,
     default="info",
@@ -65,11 +59,6 @@ logging.basicConfig(
 if __name__ == "__main__":
     df = load_dataset(args.data, DATA_PATH)
 
-    # aggregate by x hours and id
-    df = df.groupby([pd.Grouper(key="time", freq=f"{args.hours}h"), "id"]).mean()
-    df = df.reset_index()
-    logging.info(f"Shape after grouping per {args.hours} hours: {df.shape}")
-
     # drop nan
     df = df.dropna()
     logging.info(f"Shape after dropping nan: {df.shape}")
@@ -85,6 +74,7 @@ if __name__ == "__main__":
     logging.info(f"Shape after adding previous steps: {df.shape}")
 
     # create label for target: group by id and create a ts_next column
+    df = df.copy()
     df["ts_next"] = df.groupby("id")["ts"].shift(-args.fh)
     df = df.sort_values(by=["id", "time"])
     df = df.reset_index(drop=True)
