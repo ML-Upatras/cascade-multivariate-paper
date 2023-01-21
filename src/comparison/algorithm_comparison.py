@@ -37,10 +37,10 @@ def algorithm_comparison(datasets, friedman_tables, save_dir):
             ft.loc[i, "index"] = dataset
 
         # save the comparison table
-        ft.to_csv(save_dir / table.name)
+        ft.to_csv(save_dir / table.name, index=False)
 
     # save counter results to a csv
     counter = pd.DataFrame.from_dict(counter, orient="index")
     counter.to_csv(save_dir / "summary.csv")
 
-    print("Done!\n")
+    print("Done creating comparison tables for each algorithm combination!\n")
