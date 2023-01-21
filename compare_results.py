@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.comparison.algorithm_comparison import algorithm_comparison
 from src.comparison.best_models import calculate_best_models
 from src.dataset.utils import get_dataset_names
 
@@ -20,46 +21,8 @@ if __name__ == "__main__":
     # calculate the best model for each dataset
     calculate_best_models(datasets, RESULTS_BASE_DIR, FRIEDMAN_BASE_DIR)
 
-    ################ CALCULATE COMPARISON TABLES PER ALGORITHM COMBINATION  ###################
-
-    # load the friedman tables
-    counter = Counter()
-    for table in FRIEDMAN_TABLES.glob("*.csv"):
-        ft = pd.read_csv(table)
-        ft = ft.reset_index(drop=True)
-        ft = ft.drop(columns=["Unnamed: 0"])
-
-        # create a column that indicates if the cascade is better than voting
-        ft["cascade_better"] = ft["cascade"] < ft["voting"]
-
-        # create a column to indicate if the 2nd_model is better than the 1st
-        ft["2nd_better"] = ft["2nd_model"] < ft["model"]
-
-        # create a column to indicate if the 2nd and the cascade are better simultaneously
-        ft["2nd_cascade_better"] = ft["2nd_better"] & ft["cascade_better"]
-
-        # create a row that has the sum of the cascade_better column
-        ft.loc["sum"] = ft.sum()
-
-        # count a how many times the cascade is better than voting
-        counter["cascade_better"] = (
-            counter["cascade_better"] + ft["cascade_better"].loc["sum"]
-        )
-        counter["2nd_better"] = counter["2nd_better"] + ft["2nd_better"].loc["sum"]
-        counter["2nd_cascade_better"] = (
-            counter["2nd_cascade_better"] + ft["2nd_cascade_better"].loc["sum"]
-        )
-        counter["total"] = counter["total"] + len(ft) - 1
-
-        # reset index and replace each value except the last one with the dataset names
-        ft = ft.reset_index()
-        for i, dataset in enumerate(datasets):
-            ft.loc[i, "index"] = dataset
-
-        # save the comparison table
-        ft.to_csv(COMPARISON_TABLES / table.name)
-
-    print(f"Counter: {counter}")
+    # calculate comparison tables per algorithm combination
+    algorithm_comparison(datasets, FRIEDMAN_TABLES, COMPARISON_TABLES)
 
     # iterate over friedman tables and create different tables per dataset
     counter = Counter()
