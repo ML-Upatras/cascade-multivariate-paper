@@ -1,20 +1,27 @@
 from src.dataset.air import load_air
 from src.dataset.air_quality import load_air_quality
 from src.dataset.alcohol import load_alcohol
+from src.dataset.births import load_births
+from src.dataset.covid import load_covid
+from src.dataset.daily_energy import load_daily_energy
 from src.dataset.daily_temperature import load_daily_temperature
 from src.dataset.electricity import load_electricity
 from src.dataset.energy import load_energy
 from src.dataset.iot import load_iot
 from src.dataset.joho import load_joho
 from src.dataset.kolkata import load_kolkata
+from src.dataset.meat import load_meat
 from src.dataset.parking import load_parking
 from src.dataset.power import load_power
 from src.dataset.riders import load_riders
+from src.dataset.robberies import load_robberies
 from src.dataset.room import load_room
 from src.dataset.sofia import load_sofia
 from src.dataset.solar import load_solar
+from src.dataset.taxi import load_taxi
 from src.dataset.traffic import load_traffic
 from src.dataset.turbine import load_turbine
+from src.dataset.unemployment import load_unemployment
 from src.dataset.wind import load_wind
 
 
@@ -38,6 +45,13 @@ def get_dataset_names():
         "alcohol",
         "air",
         "riders",
+        "meat",
+        "taxi",
+        "daily_energy",
+        "robberies",
+        "births",
+        "unemployment",
+        "covid",
     ]
 
     return names
@@ -80,5 +94,19 @@ def load_dataset(data_name, data_path):
         df = load_air(data_path)
     elif data_name == "riders":
         df = load_riders(data_path)
+    elif data_name == "meat":
+        df = load_meat(data_path)
+    elif data_name == "taxi":
+        df = load_taxi(data_path)
+    elif data_name == "daily_energy":
+        df = load_daily_energy(data_path)
+    elif data_name == "robberies":
+        df = load_robberies(data_path)
+    elif data_name == "births":
+        df = load_births(data_path)
+    elif data_name == "unemployment":
+        df = load_unemployment(data_path)
+    elif data_name == "covid":
+        df = load_covid(data_path)
 
     return df

@@ -114,3 +114,31 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ### Portland Oregon riders monthly data
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/hsankesara/portland-oregon-avg-rider-monthly-data)
+
+### Mongolia Meat Price
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/robertritz/ub-meat-prices)
+
+### NYC Taxi Traffic
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/julienjta/nyc-taxi-traffic)
+
+### Daily Prices for the energy market
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/pranavkasela/energy-market-price-time-series)
+
+### Monthly Armed Robberies in Boston
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/sujan97/monthly-armed-robberies-in-boston)
+
+### Daily total female births in California, 1959
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/dougcresswell/daily-total-female-births-in-california-1959)
+
+### US Monthly Unemployment Rate 1948 - Present
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/tunguz/us-monthly-unemployment-rate-1948-present)
+
+### Covid-19
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/caesarmario/our-world-in-data-covid19-dataset)
