@@ -1,4 +1,5 @@
 dataset,model,2nd_model,type,mse,rmse
+air_quality,XGBoostRegressor,SVR,voting,0.3338807015065424,0.5778241094888154
 traffic,SVR,XGBoostRegressor,cascade,15.645291275218751,3.9554129083091634
 energy,RandomForestRegressor,XGBoostRegressor,voting,151357.32939087792,389.04669307279545
 power,GradientBoostingRegressor,RandomForestRegressor,cascade,52489.692798430384,229.10629148591792
@@ -8,4 +9,9 @@ solar,XGBoostRegressor,RandomForestRegressor,voting,54011.76665373276,232.404317
 kolkata,XGBoostRegressor,RandomForestRegressor,voting,0.2384616419643909,0.4883253443805584
 turbine,SVR,GradientBoostingRegressor,cascade,92188.7604597672,303.6260207224789
 joho,RandomForestRegressor,XGBoostRegressor,voting,1484675.288642231,1218.4725227276283
+electricity,XGBoostRegressor,RandomForestRegressor,voting,0.2781571934089323,0.52740609913892
 iot,XGBoostRegressor,GradientBoostingRegressor,cascade,1.3847849199131932,1.1767688472734112
+wind,RandomForestRegressor,GradientBoostingRegressor,voting,1.099864401163394,1.0487442019689044
+sofia,XGBoostRegressor,RandomForestRegressor,voting,9.16532790566393,3.0274292569214443
+daily_temp,SVR,GradientBoostingRegressor,cascade,2.5924449625742447,1.6101071276701575
+alcohol,RandomForestRegressor,GradientBoostingRegressor,cascade,355609.7195904437,596.3302101943551

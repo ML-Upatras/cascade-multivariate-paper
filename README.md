@@ -103,3 +103,7 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ### Sofia Dataset
 
 [Download & information about the dataset](https://zenodo.org/record/5516539#.Y8rmb3ZByUk)
+
+### Alcohol Sales Dataset
+
+[Download & information about the dataset](https://fred.stlouisfed.org/series/S4248SM144NCEN)
