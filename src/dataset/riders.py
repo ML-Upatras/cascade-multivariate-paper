@@ -1,16 +1,16 @@
-import logging
-
 import pandas as pd
 
 
-def load_alcohol(data_path):
+def load_riders(data_path):
     # load data
-    df = pd.read_csv(data_path / "S4248SM144NCEN.csv")
+    df = pd.read_csv(data_path / "portland-oregon-average-monthly-.csv")
 
     # rename columns
     df.columns = ["time", "ts"]
 
-    # convert time to datetime
+    df = df[:-1]
+
+    # convert date to datetime
     df["time"] = pd.to_datetime(df["time"])
 
     # add id column

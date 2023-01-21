@@ -1,3 +1,4 @@
+from src.dataset.air import load_air
 from src.dataset.air_quality import load_air_quality
 from src.dataset.alcohol import load_alcohol
 from src.dataset.daily_temperature import load_daily_temperature
@@ -8,6 +9,7 @@ from src.dataset.joho import load_joho
 from src.dataset.kolkata import load_kolkata
 from src.dataset.parking import load_parking
 from src.dataset.power import load_power
+from src.dataset.riders import load_riders
 from src.dataset.room import load_room
 from src.dataset.sofia import load_sofia
 from src.dataset.solar import load_solar
@@ -34,6 +36,8 @@ def get_dataset_names():
         "sofia",
         "daily_temp",
         "alcohol",
+        "air",
+        "riders",
     ]
 
     return names
@@ -72,5 +76,9 @@ def load_dataset(data_name, data_path):
         df = load_daily_temperature(data_path)
     elif data_name == "alcohol":
         df = load_alcohol(data_path)
+    elif data_name == "air":
+        df = load_air(data_path)
+    elif data_name == "riders":
+        df = load_riders(data_path)
 
     return df

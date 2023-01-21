@@ -106,3 +106,11 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 ### Alcohol Sales Dataset
 
 [Download & information about the dataset](https://fred.stlouisfed.org/series/S4248SM144NCEN)
+
+### Air Passenger Data
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/ashfakyeafi/air-passenger-data-for-time-series-analysis)
+
+### Portland Oregon riders monthly data
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/hsankesara/portland-oregon-avg-rider-monthly-data)
