@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 
 
-def load_air_quality(csv_path):
-    df = pd.read_csv(csv_path, sep=";")
+def load_air_quality(data_path):
+    df = pd.read_csv(data_path / "air_quality.csv", sep=";")
     logging.info(f"Shape of dataset: {df.shape}")
 
     # make all columns lowercase

@@ -1,8 +1,8 @@
 import pandas as pd
 
 
-def load_traffic(csv_path):
-    df = pd.read_csv(csv_path)
+def load_traffic(data_path):
+    df = pd.read_csv(data_path / "traffic.csv")
 
     # make all columns lowercase
     df.columns = [col.lower() for col in df.columns]

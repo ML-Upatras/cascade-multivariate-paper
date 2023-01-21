@@ -1,9 +1,9 @@
 import pandas as pd
 
 
-def load_energy(csv_path):
+def load_energy(data_path):
     # load data
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(data_path / "energy.csv")
 
     # make all columns lowercase
     df.columns = [col.lower() for col in df.columns]

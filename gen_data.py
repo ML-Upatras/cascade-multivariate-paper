@@ -4,23 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.dataset.air_quality import load_air_quality
-from src.dataset.alcohol import load_alcohol
-from src.dataset.daily_temperature import load_daily_temperature
-from src.dataset.electricity import load_electricity
-from src.dataset.energy import load_energy
-from src.dataset.iot import load_iot
-from src.dataset.joho import load_joho
-from src.dataset.kolkata import load_kolkata
-from src.dataset.parking import load_parking
-from src.dataset.power import load_power
-from src.dataset.room import load_room
-from src.dataset.sofia import load_sofia
-from src.dataset.solar import load_solar
-from src.dataset.traffic import load_traffic
-from src.dataset.turbine import load_turbine
-from src.dataset.utils import get_dataset_names
-from src.dataset.wind import load_wind
+from src.dataset.utils import get_dataset_names, load_dataset
 from src.feature_extraction import temporal_feature_extraction
 
 datasets = get_dataset_names()
@@ -63,7 +47,6 @@ args = parser.parse_args()
 
 BASE_DIR = Path("data")
 DATA_PATH = BASE_DIR / args.data.upper()
-CSV_PATH = DATA_PATH / f"{args.data}.csv"
 EXTRA_FEATURES = DATA_PATH / "extra_features.csv"
 FINAL_DATASET = DATA_PATH / "final_dataset.csv"
 
@@ -80,34 +63,7 @@ logging.basicConfig(
 )
 
 if __name__ == "__main__":
-    if args.data == "air_quality":
-        df = load_air_quality(CSV_PATH)
-    elif args.data == "traffic":
-        df = load_traffic(CSV_PATH)
-    elif args.data == "energy":
-        df = load_energy(CSV_PATH)
-    elif args.data == "power":
-        df = load_power(DATA_PATH)
-    elif args.data == "parking":
-        df = load_parking(DATA_PATH)
-    elif args.data == "room":
-        df = load_room(DATA_PATH)
-    elif args.data == "solar":
-        df = load_solar(DATA_PATH)
-    elif args.data == "kolkata":
-        df = load_kolkata(DATA_PATH)
-    elif args.data == "turbine":
-        df = load_turbine(DATA_PATH)
-    elif args.data == "joho":
-        df = load_joho(DATA_PATH)
-    elif args.data == "electricity":
-        df = load_electricity(DATA_PATH)
-    elif args.data == "iot":
-        df = load_iot(DATA_PATH)
-    elif args.data == "wind":
-        df = load_wind(DATA_PATH)
-    elif args.data == "sofia":
-        df = load_sofia(DATA_PATH)
+    df = load_dataset(args.data, DATA_PATH)
 
     # aggregate by x hours and id
     df = df.groupby([pd.Grouper(key="time", freq=f"{args.hours}h"), "id"]).mean()
@@ -117,7 +73,7 @@ if __name__ == "__main__":
     # drop nan
     df = df.dropna()
     logging.info(f"Shape after dropping nan: {df.shape}")
-    #
+
     # # feature extraction of previous steps for every column except time, id and ts
     # if args.p_steps > 0:
     #     for column in df.columns:
