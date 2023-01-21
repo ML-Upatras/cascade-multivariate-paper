@@ -74,13 +74,6 @@ if __name__ == "__main__":
     df = df.dropna()
     logging.info(f"Shape after dropping nan: {df.shape}")
 
-    # # feature extraction of previous steps for every column except time, id and ts
-    # if args.p_steps > 0:
-    #     for column in df.columns:
-    #         if column not in ["time", "id", "ts"]:
-    #             for step in range(1, args.p_steps + 1):
-    #                 df[f"{column}_t_{step}"] = df[column].shift(step)
-
     # temporal feature extraction
     df = temporal_feature_extraction(df)
     logging.info(f"Shape after temporal feature extraction: {df.shape}")
@@ -88,7 +81,7 @@ if __name__ == "__main__":
     # feature extraction of previous steps
     if args.p_steps > 0:
         for step in range(1, args.p_steps + 1):
-            df[f"ts_{step}"] = df["ts"].shift(step)
+            df = pd.concat([df, df["ts"].shift(step).rename(f"ts_{step}")], axis=1)
     logging.info(f"Shape after adding previous steps: {df.shape}")
 
     # create label for target: group by id and create a ts_next column
