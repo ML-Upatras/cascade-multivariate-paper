@@ -5,6 +5,8 @@ from pathlib import Path
 import pandas as pd
 
 from src.dataset.air_quality import load_air_quality
+from src.dataset.alcohol import load_alcohol
+from src.dataset.daily_temperature import load_daily_temperature
 from src.dataset.electricity import load_electricity
 from src.dataset.energy import load_energy
 from src.dataset.iot import load_iot
@@ -17,31 +19,19 @@ from src.dataset.sofia import load_sofia
 from src.dataset.solar import load_solar
 from src.dataset.traffic import load_traffic
 from src.dataset.turbine import load_turbine
+from src.dataset.utils import get_dataset_names
 from src.dataset.wind import load_wind
 from src.feature_extraction import temporal_feature_extraction
+
+datasets = get_dataset_names()
 
 # ARGUMENTS
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--data",
     type=str,
-    choices=[
-        "air_quality",
-        "traffic",
-        "energy",
-        "power",
-        "parking",
-        "room",
-        "solar",
-        "kolkata",
-        "turbine",
-        "joho",
-        "electricity",
-        "iot",
-        "wind",
-        "sofia",
-    ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, home, wind, sofia.",
+    choices=datasets,
+    help=f"Dataset to use. Choose between {', '.join(datasets)}.",
 )
 parser.add_argument(
     "--hours",

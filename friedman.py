@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.dataset.utils import get_dataset_names
 from stac import bonferroni_dunn_test, friedman_test, holm_test
 
 # PATHING
@@ -34,21 +35,7 @@ models = [
     "XGBoostRegressor",
     "SVR",
 ]
-datasets = [
-    "air_quality",
-    "traffic",
-    "energy",
-    "power",
-    "parking",
-    "room",
-    "solar",
-    "kolkata",
-    "turbine",
-    "joho",
-    "electricity",
-    "iot",
-    "wind",
-]
+datasets = get_dataset_names()
 
 
 if __name__ == "__main__":

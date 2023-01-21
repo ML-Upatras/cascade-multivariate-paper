@@ -12,33 +12,21 @@ from sklearn.feature_selection import SelectPercentile, f_classif
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
-from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 
+from src.dataset.utils import get_dataset_names
 from src.evaluation import calculate_importance, calculate_metrics
+
+# GET DATASET NAMES
+datasets = get_dataset_names()
 
 # ARGUMENTS
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--data",
     type=str,
-    choices=[
-        "air_quality",
-        "traffic",
-        "energy",
-        "power",
-        "parking",
-        "room",
-        "solar",
-        "kolkata",
-        "turbine",
-        "joho",
-        "electricity",
-        "iot",
-        "wind",
-        "sofia",
-    ],
-    help="Dataset to use. Choose between air_quality, traffic, energy, power, parking, room, solar, kolkata, turbine, joho, electricity, iot, wind, sofia.",
+    choices=datasets,
+    help=f"Dataset to use. Choose between {', '.join(datasets)}.",
 )
 parser.add_argument(
     "--logging",
