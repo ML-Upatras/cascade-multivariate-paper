@@ -26,4 +26,7 @@ def load_unemployment(data_path):
     # Drop the 'month' column
     df_new = df_new.drop("month", axis=1)
 
+    # Add id
+    df_new["id"] = 1
+
     return df_new
