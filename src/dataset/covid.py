@@ -15,6 +15,9 @@ def load_covid(data_path):
             cols_to_drop.append(col)
     df = df.drop(cols_to_drop, axis=1)
 
+    # drop iso code and location
+    df = df.drop(["iso_code", "location"], axis=1)
+
     # fill missing values
     df = df.fillna(method="ffill")
 

@@ -3,7 +3,7 @@
 # parking, room, solar, kolkata, turbine, joho, electricity, iot, wind, sofia, daily_temp, alcohol)
 
 # set up list of hourly datasets
-datasets=(air_quality traffic power energy parking room solar kolkata turbine joho electricity iot wind sofia taxi)
+#datasets=(traffic power energy parking room solar turbine joho iot taxi)
 
 # set up general arguments
 logging_level=info
@@ -19,7 +19,7 @@ for dataset in "${datasets[@]}"; do
 done
 
 # set up list of daily datasets
-daily_datasets=(daily_temp daily_energy births covid)
+daily_datasets=(daily_energy covid)
 
 p_steps=5
 for dataset in "${daily_datasets[@]}"; do
@@ -41,9 +41,9 @@ for dataset in "${weekly_datasets[@]}"; do
 done
 
 # set up list of monthly datasets
-monthly_datasets=(alcohol air riders robberies unemployment)
+monthly_datasets=(alcohol robberies)
 
-p_steps=5
+p_steps=24
 for dataset in "${monthly_datasets[@]}"; do
   echo "Generating data for $dataset"
   python gen_data.py --data="$dataset" --logging=$logging_level --p_steps=$p_steps --fh=$fh
