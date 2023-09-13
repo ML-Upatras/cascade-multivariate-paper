@@ -30,9 +30,12 @@ logging.basicConfig(
 )
 
 models = [
-    "RandomForestRegressor",
+    "Lasso",
+    # "SGDRegressor",
+    "MLPRegressor",
+    # "RandomForestRegressor",
     "GradientBoostingRegressor",
-    "XGBoostRegressor",
+    # "XGBoostRegressor",
     "SVR",
 ]
 datasets = get_dataset_names()

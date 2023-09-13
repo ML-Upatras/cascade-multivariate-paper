@@ -9,7 +9,9 @@ from sklearn.ensemble import (
     VotingRegressor,
 )
 from sklearn.feature_selection import SelectPercentile, f_classif
+from sklearn.linear_model import SGDRegressor, Lasso
 from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
 from xgboost import XGBRegressor
@@ -78,7 +80,10 @@ logging.basicConfig(
 
 # DEFINE REGRESSION MODELS
 models = {
-    "RandomForestRegressor": RandomForestRegressor(),
+    "Lasso": Lasso(),
+    "SGDRegressor": SGDRegressor(),
+    "MLPRegressor": MLPRegressor(max_iter=500),
+    # "RandomForestRegressor": RandomForestRegressor(),
     "XGBoostRegressor": XGBRegressor(),
     "SVR": SVR(),
     "GradientBoostingRegressor": GradientBoostingRegressor(),
