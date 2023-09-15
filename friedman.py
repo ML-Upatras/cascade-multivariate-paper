@@ -50,7 +50,7 @@ if __name__ == "__main__":
             logging.info(f"Friedman {model} & {model_2}...")
             # initialize dataframe for each combination (25 df)
             friedman_df = pd.DataFrame(
-                columns=["model", "2nd_model", "cascade", "voting"]
+                columns=["cascade", "voting"]
             )
 
             # iterate over datasets

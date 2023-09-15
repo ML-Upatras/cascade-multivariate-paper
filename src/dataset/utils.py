@@ -27,31 +27,16 @@ from src.dataset.wind import load_wind
 
 def get_dataset_names():
     names = [
-        "air_quality",
         "traffic",
         "energy",
         "power",
         "parking",
-        "room",
-        "solar",
         "kolkata",
+        "solar",
         "turbine",
         "joho",
-        "electricity",
         "iot",
-        "wind",
-        "sofia",
-        "daily_temp",
-        "alcohol",
-        "air",
-        "riders",
-        "meat",
         "taxi",
-        "daily_energy",
-        "robberies",
-        "births",
-        "unemployment",
-        "covid",
     ]
 
     return names

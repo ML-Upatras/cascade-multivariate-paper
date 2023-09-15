@@ -1,9 +1,8 @@
 #!/bin/bash
 # bash script that runs the training pipeline script for all datasets
-# (traffic power energy parking room solar turbine joho iot taxi daily_energy covid meat alcohol robberies)
 
 # set up list of datasets
-datasets=(traffic power energy parking room solar turbine joho iot taxi daily_energy covid meat alcohol robberies)
+datasets=(traffic power energy parking kolkata solar turbine joho iot taxi)
 
 # set up arguments
 logging_level=debug

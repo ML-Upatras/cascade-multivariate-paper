@@ -47,37 +47,29 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 
 ## Dataset descriptions
 
-### Air Quality Dataset
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/fedesoriano/air-quality-data-set?resource=download)
-
 ### Traffic Dataset
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/fedesoriano/traffic-prediction-dataset)
-
-### Energy consumption Dataset
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption?select=PJM_Load_hourly.csv)
 
 ### Power Consumption of Turkey (2016-2020)
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/hgultekin/hourly-power-consumption-of-turkey-20162020?select=RealTimeConsumption-01012016-04082020.csv)
 
+### Energy consumption Dataset
+
+[Download & information about the dataset](https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption?select=PJM_Load_hourly.csv)
+
 ### Parking Occupancy Dataset
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/mypapit/klccparking)
 
-### Room Temperature Dataset
+### Temperature and Humidity of Kolkata from 2015-2020
 
-[Download & information about the dataset](https://www.kaggle.com/datasets/vitthalmadane/ts-temp-1)
+[Download & information about the dataset](https://www.kaggle.com/datasets/sumandey/temperature-and-humidity-of-kolkata-from-20152020)
 
 ### Solar Generation in Italy Dataset
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/arielcedola/solar-generation-and-demand-italy-20152016)
-
-### Temperature and Humidity of Kolkata from 2015-2020
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/sumandey/temperature-and-humidity-of-kolkata-from-20152020)
 
 ### Wind Turbine Texas Dataset
 
@@ -87,58 +79,10 @@ python training_pipeline.py  --data=<dataset> --logging=info --ii=<int>
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/pattnaiksatyajit/hourly-load-data)
 
-### Household Electric Power Consumption
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/uciml/electric-power-consumption-data-set)
-
 ### Temperature Readings : IOT Devices
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/atulanandjha/temperature-readings-iot-devices)
 
-### Wind Time Series Dataset
-
-[Download & information about the dataset](https://zenodo.org/record/5516539#.Y8rmb3ZByUk)
-
-### Sofia Dataset
-
-[Download & information about the dataset](https://zenodo.org/record/5516539#.Y8rmb3ZByUk)
-
-### Alcohol Sales Dataset
-
-[Download & information about the dataset](https://fred.stlouisfed.org/series/S4248SM144NCEN)
-
-### Air Passenger Data
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/ashfakyeafi/air-passenger-data-for-time-series-analysis)
-
-### Portland Oregon riders monthly data
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/hsankesara/portland-oregon-avg-rider-monthly-data)
-
-### Mongolia Meat Price
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/robertritz/ub-meat-prices)
-
 ### NYC Taxi Traffic
 
 [Download & information about the dataset](https://www.kaggle.com/datasets/julienjta/nyc-taxi-traffic)
-
-### Daily Prices for the energy market
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/pranavkasela/energy-market-price-time-series)
-
-### Monthly Armed Robberies in Boston
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/sujan97/monthly-armed-robberies-in-boston)
-
-### Daily total female births in California, 1959
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/dougcresswell/daily-total-female-births-in-california-1959)
-
-### US Monthly Unemployment Rate 1948 - Present
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/tunguz/us-monthly-unemployment-rate-1948-present)
-
-### Covid-19
-
-[Download & information about the dataset](https://www.kaggle.com/datasets/caesarmario/our-world-in-data-covid19-dataset)
